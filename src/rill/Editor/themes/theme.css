@@ -1,0 +1,1053 @@
+.rill {
+    text-transform: none;
+    line-height: 1.28581;
+    letter-spacing: 0;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.rill-dark {
+    background-color: rgb(51,51,51);
+}
+
+.rill-light {
+    background-color: #fff;
+}
+
+h2.rill-heading {
+    margin-block-start: 0.25em;
+    margin-block-end: 0.5em;
+}
+
+svg.rill-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.rill-portal {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    bottom: 0px;
+}
+
+.rill-light .rill-text-muted {
+    color: darkgray;
+}
+
+.rill-dark .rill-text-muted {
+    color: lightgray;
+}
+
+.rill-svg-text-muted {
+    fill: #a7b6c2;
+    user-select: none;
+}
+
+.rill-text-debug {
+    color: #6b6969;
+    fill: #6b6969;
+    font-size: 12px;
+    user-select: none;
+}
+
+.rill-controls-panel-block {
+    display: flex;
+    flex-direction: row;
+    padding: 5px !important;
+    overflow: hidden;
+}
+
+.rill-controls-panel {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 15px;
+}
+
+/**************************
+ *     SVG Animations
+ **************************/
+
+.rill-connection-run-anim {
+    animation: connectionRunAnimKeyframes 1s linear 1;
+}
+
+@keyframes connectionRunAnimKeyframes {
+    50% {
+        stroke: #ffd300;
+    }
+    100% {
+        stroke: rgb(129,130,185);
+    }
+}
+
+/**************************
+ *       Overlay
+ **************************/
+
+.rill-overlay {
+    position: static;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10000;
+
+    /* Scroll */
+    position: fixed;
+    overflow: auto;
+}
+
+.rill-overlay-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 1;
+    background-color: rgba(16,22,26,.5);
+    overflow: auto;
+    user-select: none;
+}
+
+.rill-overlay-content {
+    position: fixed;
+    z-index: 10000;
+
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;    
+}
+
+/**************************
+ *      Input Field
+ **************************/
+
+ .rill-input-field {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.rill-input {
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 0 0 0 rgba(19,124,189,0), 0 0 0 0 rgba(19,124,189,0), 0 0 0 0 rgba(19,124,189,0), inset 0 0 0 1px rgba(16,22,26,.3), inset 0 1px 1px rgba(16,22,26,.4);
+    height: 30px;
+    padding: 0 10px;
+    vertical-align: middle;
+    line-height: 30px;
+    font-size: 14px;
+    font-weight: 400;
+    transition: box-shadow .1s cubic-bezier(.4,1,.75,.9);
+    appearance: none;
+}
+
+.rill-dark .rill-input {
+    color: #f5f8fa;
+    background: rgba(16, 22, 26, 0.3);
+}
+
+.rill-light .rill-input {
+    color: #182026;
+    background: #fff;
+}
+
+.rill-input:disabled {
+    box-shadow: none;
+    background: rgba(57, 75, 89, .5);
+    color: rgba(167, 182, 194, .6);
+}
+
+.rill-input::placeholder {
+    opacity: 1;
+    color: rgba(92, 112, 128, 0.6);
+}
+
+.rill-input-field .rill-input:not(:first-child) {
+    padding-left: 30px;
+}
+
+.rill-input-field .rill-input {
+    position: relative;
+    width: 100%;
+}
+
+.rill-fill .rill-input-field, .rill-input-field.rill-fill {
+    width: 100%;
+}
+
+/**************************
+ * Control + Switch + Checkbox
+ **************************/
+
+.rill-control {
+    display: block;
+    position: relative;
+    margin-bottom: 10px;
+    cursor: pointer;
+    text-transform: none
+}
+
+label.rill-control {
+    display: block;
+    margin-top: 0;
+    font-weight: 400;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.25);
+    user-select: none;
+}
+
+.rill-control-group .rill-control {
+    margin-top: 7px;
+}
+
+.rill-control .rill-control-indicator {
+    display: inline-block;
+    position: relative;
+    margin-top: -3px;
+    margin-right: 10px;
+    border: none;
+    box-shadow: inset 0 0 0 1px rgba(16,22,26,.2),inset 0 -1px 0 rgba(16,22,26,.1);
+    background-clip: padding-box;
+    background-color: #f5f8fa;
+    background-image: linear-gradient(180deg,hsla(0,0%,100%,.8),hsla(0,0%,100%,0));
+    cursor: pointer;
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    font-size: 16px;
+    user-select: none
+}
+
+.rill-control .rill-control-indicator:before {
+    display: block;
+    width: 1em;
+    height: 1em;
+    content: "";
+}
+
+.rill-control:hover .rill-control-indicator {
+    background-color: #ebf1f5
+}
+
+.rill-control input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    z-index: -1;
+}
+
+[type=checkbox],[type=radio] {
+    box-sizing: border-box;
+    padding: 0
+}
+
+.rill-control input:checked ~ .rill-control-indicator {
+    background-color: #13bd7c;
+    background-image: linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0));
+    color: #fff
+}
+
+.rill-control input:not(:disabled):active ~ .rill-control-indicator {
+    box-shadow: inset 0 0 0 1px rgba(16,22,26,.2),inset 0 1px 2px rgba(16,22,26,.2);
+    background: #d8e1e8
+}
+
+.rill-control input:disabled ~ .rill-control-indicator {
+    box-shadow: none;
+    background: rgba(206,217,224,.5);
+    cursor: not-allowed
+}
+
+.rill-control input:focus ~ .rill-control-indicator {
+    outline: none;
+    outline-offset: 2px;
+}
+
+.rill-control:hover input:checked ~ .rill-control-indicator, .rill-control input:checked ~ .rill-control-indicator {
+    box-shadow: inset 0 0 0 1px rgba(16,22,26,.4),inset 0 -1px 0 rgba(16,22,26,.2)
+}
+
+.rill-control:hover input:checked~.rill-control-indicator {
+    background-color: #10a36b;
+}
+
+.rill-control input:not(:disabled):active:checked~.rill-control-indicator {
+    box-shadow: inset 0 0 0 1px rgba(16,22,26,.4),inset 0 1px 2px rgba(16,22,26,.2);
+    background: #0e8a5a;
+}
+
+.rill-control input:disabled:checked~.rill-control-indicator {
+    box-shadow: none;
+    background: rgba(19,124,189,.5)
+}
+
+.rill-control:hover input:checked ~ .rill-control-indicator, .rill-control input:checked ~ .rill-control-indicator {
+    box-shadow: 0 0 0 1px rgba(16,22,26,.4)
+}
+
+.rill-control:hover input:checked~.rill-control-indicator {
+    background-color: #10a36b;
+}
+
+.rill-control input:not(:disabled):active:checked~.rill-control-indicator {
+    box-shadow: 0 0 0 1px rgba(16,22,26,.4),inset 0 1px 2px rgba(16,22,26,.2);
+    background-color: #0e8a5a;
+}
+
+.rill-control input:disabled:checked~.rill-control-indicator {
+    box-shadow: none;
+    background: rgba(14,138,90,.5)
+}
+
+.rill-control {
+    padding-left: 26px;
+}
+
+.rill-control .rill-control-indicator {
+    margin-left: -26px;
+}
+
+.rill-control.rill-align-right .rill-control-indicator {
+    margin-right: -26px;
+}
+
+.rill-control.rill-disabled {
+    cursor: not-allowed;
+    color: rgba(92,112,128,.6)
+}
+
+.rill-control.rill-switch input ~ .rill-control-indicator {
+    background: rgba(167,182,194,.5)
+}
+
+.rill-control.rill-switch:hover input ~ .rill-control-indicator {
+    background: rgba(115,148,134,.5)
+}
+
+.rill-control.rill-switch input:not(:disabled):active ~ .rill-control-indicator {
+    background: rgba(92,112,128,.5)
+}
+
+.rill-control.rill-switch input:disabled ~ .rill-control-indicator {
+    background: rgba(206,217,224,.5)
+}
+
+.rill-control.rill-switch input:disabled ~ .rill-control-indicator:before {
+    background: hsla(0,0%,100%,.8)
+}
+
+.rill-control.rill-switch input:checked ~ .rill-control-indicator {
+    background: #13bd7c;
+}
+
+.rill-control.rill-switch:hover input:checked ~ .rill-control-indicator {
+    background: #10a36b;
+}
+
+.rill-control.rill-switch input:checked:not(:disabled):active ~ .rill-control-indicator {
+    background: #0e8a5a;
+}
+
+.rill-control.rill-switch input:checked:disabled ~ .rill-control-indicator {
+    background: rgba(19,124,189,.5)
+}
+
+.rill-control.rill-switch input:checked:disabled ~ .rill-control-indicator:before {
+    background: hsla(0,0%,100%,.8)
+}
+
+.rill-control.rill-switch {
+    padding-left: 28px;
+}
+
+.rill-control.rill-switch .rill-control-indicator {
+    border: none;
+    border-radius: 1.75em;
+    box-shadow: none!important;
+    width: auto;
+    min-width: 1.75em;
+    transition: background-color .1s cubic-bezier(.4,1,.75,.9);
+}
+
+.rill-control.rill-switch .rill-control-indicator:before {
+    position: absolute;
+    left: 0;
+    margin: 2px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(16,22,26,.2),0 1px 1px rgba(16,22,26,.2);
+    background: #fff;
+    width: calc(1em - 4px);
+    height: calc(1em - 4px);
+    transition: left .1s cubic-bezier(.4,1,.75,.9);
+}
+
+.rill-control.rill-switch input:checked ~ .rill-control-indicator:before {
+    left: calc(100% - 1em)
+}
+
+.rill-control.rill-switch input ~ .rill-control-indicator {
+    background: rgba(16,22,26,.5)
+}
+
+/**************************
+ *         Button
+ **************************/
+
+.rill-button {
+    box-shadow: none;
+    background: none;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 5px 10px;
+    vertical-align: middle;
+    text-align: left;
+    font-size: 14px;
+    min-width: 30px;
+    min-height: 30px;
+    text-transform: none;
+}
+
+.rill-dark .rill-button {
+    color: white;
+}
+
+.rill-light .rill-button {
+    color: #a4aaaf;
+}
+
+.rill-button:hover {
+    box-shadow: none;
+    background: rgba(167,182,194,.3);
+    text-decoration: none;
+}
+
+ .rill-button > * {
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.rill-button > .rill-fill {
+    flex-grow: 1;
+    flex-shrink: 1
+}
+
+.rill-button.rill-fill {
+    display: flex;
+    width: 100%
+}
+
+.rill-button:before, .rill-button > * {
+    margin-right: 7px;
+}
+
+.rill-button:empty:before, .rill-button>:last-child {
+    margin-right: 0;
+}
+
+.rill-button.rill-disabled, .rill-button:disabled {
+    cursor: not-allowed;
+}
+
+.rill-button.rill-disabled, .rill-button.rill-disabled:hover, .rill-button:disabled, .rill-button:disabled:hover {
+    background: none;
+    cursor: not-allowed;
+    color: rgba(92,112,128,.6)
+}
+
+.rill-button.rill-active, .rill-button:active {
+    box-shadow: none;
+    background: rgba(115,134,148,.3);
+}
+
+.rill-button.rill-disabled .rill-icon {
+    color: rgba(114, 116, 117, 0.6);
+}
+
+.rill-button-text {
+    flex: 0 1 auto;
+    user-select: none;
+}
+
+.rill-button-group .rill-button-text {
+    flex: 1 1 auto
+}
+
+.rill-button-group {
+    display: inline-flex
+}
+
+/**************************
+ *          Icon
+ **************************/
+
+.rill-icon {
+    display: inline-block;
+    flex: 0 0 auto;
+    vertical-align: text-bottom;
+}
+
+.rill-dark .rill-button .rill-icon {
+    color: #a4aaaf;
+}
+
+.rill-light .rill-button .rill-icon {
+    color: #7d8185;
+}
+
+.rill-menu-item:before, .rill-menu-item > .rill-icon {
+    margin-top: 2px;
+    color: #a4aaaf;
+}
+
+.rill-icon > svg:not([fill]) {
+    fill: currentColor;
+}
+
+.rill-button[class*=rill-icon-]:before {
+    line-height: 1;
+    font-family: Icons16,sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.rill-dark .rill-button[class*=rill-icon-]:before {
+    color: #a4aaaf;
+}
+
+.rill-dark .rill-button[class*=rill-icon-]:before {
+    color: #7d8185;
+}
+
+.rill-button .rill-icon:first-child:last-child {
+    margin: 0 -7px
+}
+
+.rill-menu-item:before, .rill-menu-item > * {
+    margin-right: 7px;
+}
+
+/**************************
+ *         Panel
+ **************************/
+
+.rill-panel {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.rill-dark .rill-panel {
+    background-color: #2c2d2e;
+    box-shadow: 0 0 0 1px rgba(16,22,26,.2), 0 1px 2px rgba(16,22,26,.4), 0 4px 12px rgba(16,22,26,.4);
+    color: #f5f8fa;
+}
+
+.rill-light .rill-panel {
+    background-color: rgb(249,249,249);
+    box-shadow: 0 0 0 1px rgba(16,22,26,.1), 0 1px 2px rgba(16,22,26,.2), 0 4px 12px rgba(16,22,26,.2);
+    color: #182026;
+}
+
+/**************************
+ *         Dialog
+ **************************/
+
+.rill-dialog {
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    max-height: 60vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/**************************
+ *          Menu
+ **************************/
+
+.rill-menu {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+.rill-light .rill-menu {
+    color: black;
+    background-color: #f9f9f9;
+}
+
+.rill-dark .rill-menu {
+    color: #a4aaaf;    
+    background-color: #2f3235;
+}
+
+.rill-menu-divider {
+    border-style: solid;
+    border-width: 1px;
+    display: block;
+    margin: 5px;
+}
+
+.rill-light .rill-menu-divider {
+    color: #f5f8fa;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.rill-dark .rill-menu-divider {
+    color: #f5f8fa;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.rill-menu-item {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    border-radius: 2px;
+    padding: 5px 7px;
+    text-decoration: none;
+    line-height: 20px;
+    color: inherit;
+    user-select: none;
+}
+/* 
+.rill-menu-item > .rill-fill {
+    flex-grow: 1;
+    flex-shrink: 1
+} */
+
+.rill-menu-item:hover {
+    background-color: rgba(138,155,168,.15);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.rill-menu-item.rill-active {
+    background-color: rgba(138,155,168,.15);
+}
+
+.rill-menu-item.rill-disabled {
+    background-color: inherit;
+    cursor: not-allowed;;
+    color: rgba(167,182,194,.6);
+}
+
+/**************************
+ *     Control Group
+ **************************/
+
+.rill-control-group {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 15px;
+}
+
+.rill-control-group.rill-inline {
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.rill-control-group label.rill-label {
+    margin: 0 10px 0 0;
+    line-height: 30px;
+}
+
+.rill-dark .rill-control-group label.rill-label {
+    color: #f5f8fa;    
+}
+
+.rill-light .rill-control-group label.rill-label {
+    color: black;
+}
+
+.rill-control-group label.rill-label {
+    margin-bottom: 5px;
+}
+
+label.rill-label {
+    display: block;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 400;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.25);
+    user-select: none;
+}
+
+.rill-control-group .rill-help-text {
+    margin-top: 5px;
+    color: #4f5152;
+    font-size: 12px;
+}
+
+.rill-control-group.rill-fill {
+    width: 100%;
+}
+
+/**************************
+ *      Node Edit
+ **************************/
+
+.rill-node-edit-header {
+    min-height: 25px;
+    color: white;    
+    background-color: rgb(120,80,170);
+    font-size: 18px;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.rill-node-edit {
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.rill-dark .rill-node-edit-error {
+    padding: 10px 0px;
+    color: #ffb2b2;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.25);
+}
+
+.rill-dark .rill-node-edit {
+    background-color: rgb(148,148,148);
+    border-color: rgb(101,101,101);
+    color: white;
+}
+
+.rill-light .rill-node-edit-error {
+    padding: 10px 0px;
+    color: #e45858;
+    text-shadow: 1px 1px 0px rgba(255, 193, 193, 0.25);
+}
+
+.rill-light .rill-node-edit {
+    background-color: rgb(221,221,221);
+    border-color: rgb(175,175,175);
+    color: black;
+}
+
+.rill-node-edit-content {
+    padding: 0px 10px;
+}
+
+.rill-node-edit:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.rill-resizer {
+    width: 8px;
+    cursor: ew-resize;
+    margin-right: 6px;
+    border-right-style: solid;
+    border-right-width: 2px;
+    display: block;
+}
+
+.rill-dark .rill-resizer {
+    border-color:  rgb(64, 64, 64);
+}
+
+.rill-light .rill-resizer {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+/**************************
+ *     Canvas Styles
+ **************************/
+
+
+/* Connection */
+
+.rill-canvas-connection {
+    fill: transparent;
+}
+
+.rill-highquality .rill-canvas-connection {
+    filter: url(#shadow);
+}
+
+.rill-canvas-connection.rill-disabled {
+    pointer-events: none;
+}
+
+.rill-canvas-connection.rill-canvas-connection-flow {
+    stroke-width: 2px;
+    marker-end: url(#arrow);
+}
+
+.rill-canvas-connection.rill-canvas-connection-flow:hover:not(.rill-disabled) {
+    stroke-width: 3px;
+}
+
+.rill-canvas-connection.rill-canvas-connection-value {
+    stroke-dasharray: 3px;
+    stroke-width: 1.5px;
+    marker-end: url(#arrow);
+}
+
+.rill-canvas-connection.rill-canvas-connection-value:hover:not(.rill-disabled) {
+    stroke-width: 2px;
+}
+
+.rill-dark .rill-canvas-connection {
+    stroke: rgb(129,130,185);
+}
+
+.rill-dark .rill-error.rill-canvas-connection {
+    stroke: rgb(221, 101, 101);
+    stroke-width: 2px;
+}
+
+.rill-light .rill-canvas-connection {
+    stroke: rgb(129,130,185);
+}
+
+.rill-light .rill-error.rill-canvas-connection {
+    stroke: rgb(221, 101, 101);
+    stroke-width: 2px;
+}
+
+/* Lasso */
+
+.rill-canvas-lasso {
+    stroke-width: 1px;
+}
+
+.rill-dark .rill-canvas-lasso {
+    fill: rgba(121,161,234,0.25);
+    stroke: rgba(68,176,239,0.75);
+}
+
+.rill-light .rill-canvas-lasso {
+    fill: rgba(68,180,255,0.1);
+    stroke: rgba(68,200,255,0.5);
+}
+
+/* Node */
+
+.rill-canvas-node-panel {
+    rx: 5px;
+    stroke-width: 1px;
+}
+
+.rill-highquality .rill-canvas-node-panel {
+    filter: url(#shadow);    
+}
+
+.rill-dark .rill-canvas-node-panel {
+    fill: rgb(165,165,165);
+    stroke: rgb(101,101,101);
+}
+
+.rill-dark .rill-selected .rill-canvas-node-panel {
+    fill: rgb(190,190,190);
+    stroke: rgb(68,176,239);
+}
+
+.rill-dark .rill-error .rill-canvas-node-panel {
+    stroke-width: 2px;
+    stroke: rgb(221, 101, 101);
+}
+
+.rill-dark .rill-canvas-node-error-icon {
+    fill: rgb(221, 101, 101);
+}
+
+.rill-light .rill-canvas-node-panel {
+    fill: rgb(201,201,201);
+    stroke: rgb(151,151,151);
+}
+
+.rill-light .rill-selected .rill-canvas-node-panel {
+    fill: rgb(221,221,221);
+    stroke: rgb(68,176,239);
+}
+
+.rill-light .rill-error .rill-canvas-node-panel {
+    stroke: rgb(221, 101, 101);
+    stroke-width: 2px;
+}
+
+.rill-light .rill-canvas-node-error-icon {
+    fill: rgb(221, 101, 101);
+}
+
+/* Node Header */
+
+.rill-canvas-node-header-base {
+    rx: 5px;
+}
+
+.rill-dark .rill-canvas-node-header-base {
+    fill: rgb(120,80,170);
+}
+
+.rill-light .rill-canvas-node-header-base {
+    fill: rgb(120,80,170);
+}
+
+.rill-canvas-node-header-text {
+    pointer-events: none;
+    user-select: none;
+}
+
+.rill-dark .rill-canvas-node-header-text {
+    fill: white;
+}
+
+.rill-light .rill-canvas-node-header-text {
+    fill: white;
+}
+
+.rill-highquality .rill-canvas-node-header-text {
+    filter: url(#textShadow);    
+}
+
+.rill-canvas-node-header-overlay {
+    fill: transparent;
+}
+
+.rill-highquality .rill-canvas-node-header-overlay {
+    fill: url(#headerGradient);
+}
+
+/* Node Port */
+
+.rill-canvas-node-port {
+}
+
+.rill-dark .rill-canvas-node-port {
+    fill: rgb(129,130,185);
+    stroke: rgb(101,101,101);    
+}
+
+.rill-light .rill-canvas-node-port {
+    fill: rgb(149,150,205);
+    stroke: rgb(129,130,185);
+}
+
+.rill-canvas-node-port .rill-canvas-node-port-flow {
+    r: 6px;
+    stroke-width: 2px;
+}
+
+.rill-dark .rill-canvas-node-port-flow.rill-target {
+    fill: greenyellow;
+    stroke: rgb(130, 184, 50);
+}
+
+.rill-dark .rill-canvas-node-port-value.rill-target {
+    fill: greenyellow;
+    stroke: rgb(130, 184, 50);
+}
+
+.rill-light .rill-canvas-node-port-flow.rill-target {
+    fill: greenyellow;
+    stroke: rgb(130, 184, 50);
+}
+
+.rill-light .rill-canvas-node-port-value.rill-target {
+    fill: greenyellow;
+    stroke: rgb(130, 184, 50);
+}
+
+.rill-canvas-node-port-flow.rill-target {
+    r: 8px !important;
+    cursor: pointer;
+}
+
+.rill-canvas-node-port-flow.rill-active {
+    r: 8px !important;
+    cursor: pointer;
+}
+
+.rill-canvas-node-port .rill-canvas-node-port-value {
+    r: 4px;
+    stroke-width: 1px;
+}
+
+.rill-canvas-node-port-value.rill-target {
+    r: 6px !important;
+    cursor: pointer;
+}
+
+.rill-canvas-node-port-value.rill-active {
+    r: 6px !important;
+    cursor: pointer;
+}
+
+.rill-canvas-node-port .rill-canvas-node-port-text {
+    pointer-events: none;
+    user-select: none;
+    stroke-width: 0px;
+}
+
+.rill-dark .rill-canvas-node-port-text {
+    fill: white;
+}
+
+.rill-light .rill-canvas-node-port-text {
+    fill: black;
+}
+
+.rill-highquality .rill-canvas-node-port .rill-canvas-node-port-text {
+    filter: url(#textShadow);
+}
+
+.rill-canvas-node-port .rill-canvas-node-port-value .rill-canvas-node-port-text {
+    font-size: 12px;
+}
+
+.rill-canvas-node-desc {
+    /* Same as text muted */
+    fill: #a7b6c2;
+    user-select: none;
+}
+
+/* Grid */
+
+.rill-dark .rill-canvas-grid-small {
+    fill: none;
+    stroke: rgb(96, 96, 96);
+    stroke-width: 0.5px;
+}
+
+.rill-dark .rill-canvas-grid-large {
+    fill: none;
+    stroke: rgb(96, 96, 96);
+    stroke-width: 1px;
+}
+
+.rill-light .rill-canvas-grid-small {
+    fill: none;
+    stroke: rgb(196, 196, 196);
+    stroke-width: 0.5px;
+}
+
+.rill-light .rill-canvas-grid-large {
+    fill: none;
+    stroke: rgb(196, 196, 196);
+    stroke-width: 1px;
+}
