@@ -95,7 +95,6 @@ svg.rill-svg {
  **************************/
 
 .rill-overlay {
-    position: static;
     top: 0;
     right: 0;
     bottom: 0;
@@ -103,12 +102,12 @@ svg.rill-svg {
     z-index: 10000;
 
     /* Scroll */
-    position: fixed;
+    position: absolute;
     overflow: auto;
 }
 
 .rill-overlay-backdrop {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
@@ -120,7 +119,7 @@ svg.rill-svg {
 }
 
 .rill-overlay-content {
-    position: fixed;
+    position: absolute;
     z-index: 10000;
 
     top: 0;

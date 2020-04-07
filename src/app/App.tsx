@@ -1,6 +1,7 @@
 import React from 'react';
 import { RillEditor, Graph, ConsoleLog, BrowserAlert, BrowserPrompt } from '../rill';
-import './rill/Editor/themes/theme.css';
+import '../rill/Editor/themes/theme.css';
+import { snippets } from './snippets';
 
 const graph = new Graph();
 const n1 = new ConsoleLog('Some message');
@@ -35,7 +36,15 @@ export function App() {
         backgroundColor: '#2d2828'
       }}
     >
-      <RillEditor graph={graph} />
+      <div
+        style={{
+          backgroundColor: 'white',
+          height: 200
+        }}
+      >
+        <h1>Rill Development Editor</h1>
+      </div>
+      <RillEditor graph={graph} options={{design: {snippets}} as any} />
     </div>
   );
 }
