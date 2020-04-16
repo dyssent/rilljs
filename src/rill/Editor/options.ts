@@ -87,7 +87,7 @@ export interface Options {
 
 export const defaultOptions: Options = {
     registry: defaultRegistry,
-    readonly: false,
+    readonly: true,
     design: defaultDesignOptions,
     validation: defaultValidationOptions,
     drawers: defaultDrawers

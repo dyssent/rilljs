@@ -10,9 +10,11 @@ export interface TextDataDrawerProps extends DataDrawerProps<string, Text> {
 export function TextDataDrawer(props: TextDataDrawerProps) {
     const {
         value,
+        options,
         onValueChange
     } = props;
 
+    const { readonly } = options;
     const [_, redraw] = useState({});
 
     function onChange(event: React.FormEvent<HTMLInputElement>) {
@@ -25,6 +27,7 @@ export function TextDataDrawer(props: TextDataDrawerProps) {
         <InputField
             value={value.value || ''}
             onChange={onChange}
+            disabled={readonly}
         />
     );    
 }

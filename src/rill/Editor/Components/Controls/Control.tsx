@@ -57,6 +57,7 @@ export function Control(props: ControlProps) {
                 checked={checked}
                 defaultChecked={defaultChecked}
                 onChange={onChange}
+                disabled={disabled}
             />
             <span className={theme.controls.indicator}>
                 {

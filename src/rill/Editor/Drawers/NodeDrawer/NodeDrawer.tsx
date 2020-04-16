@@ -15,6 +15,7 @@ export function NodeDrawer(props: React.PropsWithChildren<NodeDrawerProps>) {
         children
     } = props;
 
+    const { readonly } = options;
     const [, redraw] = useState({});
     const classes = theme.classes;
     const design = node.designDefn;
@@ -75,6 +76,7 @@ export function NodeDrawer(props: React.PropsWithChildren<NodeDrawerProps>) {
                     <InputField
                         value={node.nodeName || ''}
                         onChange={onNodeNameChange}
+                        disabled={readonly}
                     />
                 </ControlGroup>
                 {

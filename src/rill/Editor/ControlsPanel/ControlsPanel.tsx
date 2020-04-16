@@ -24,6 +24,7 @@ export interface ControlsBuiltins {
 export interface ControlsPanelProps {
     controls?: ControlsBuiltins;
     editorElement?: HTMLElement | null;
+    readonly?: boolean;
 }
 
 export function copyToClipboard(text: string) {
@@ -55,6 +56,7 @@ export function ControlsPanel(props: React.PropsWithChildren<ControlsPanelProps>
     const {
         children,
         editorElement,
+        readonly,
         controls = {}
     } = props;
 
@@ -89,26 +91,28 @@ export function ControlsPanel(props: React.PropsWithChildren<ControlsPanelProps>
             controls.zoomOut ? <ZoomOut key="zoomout" /> : null,
             controls.zoomIn ? <ZoomIn key="zoomin" /> : null
         ]);
-    
-        if ((controls.createNew || controls.insertSnippet) && items.length > 0) {
-            items.push(<Divider key="div2" />);
-        }
-        items.push(...[
-            controls.insertSnippet ? <InsertSnippet key="insertsnippet" /> : null,
-            controls.createNew ? <CreateNew key="createnew" /> : null,
-        ]);
 
-        if ((controls.insertSnippet || controls.createNew) && items.length > 0) {
-            items.push(<Divider key="div3" />);
+        if (!readonly) {
+            if ((controls.createNew || controls.insertSnippet) && items.length > 0) {
+                items.push(<Divider key="div2" />);
+            }
+            items.push(...[
+                controls.insertSnippet ? <InsertSnippet key="insertsnippet" /> : null,
+                controls.createNew ? <CreateNew key="createnew" /> : null,
+            ]);
+    
+            if ((controls.insertSnippet || controls.createNew) && items.length > 0) {
+                items.push(<Divider key="div3" />);
+            }
+            items.push(
+                <Button
+                    key="paste"
+                    icon="clipboard"
+                    title="Paste"
+                    onClick={onPaste}
+                />
+            );
         }
-        items.push(
-            <Button
-                key="paste"
-                icon="clipboard"
-                title="Paste"
-                onClick={onPaste}
-            />
-        );
     
         return items.filter(i => i ? true : false);
     }, [
@@ -160,11 +164,14 @@ export function ControlsPanel(props: React.PropsWithChildren<ControlsPanelProps>
                     onDoubleClick={stopPropagation}
                     onMouseUp={stopPropagation}
                 >
-                    <Button
-                        icon="trash"
-                        title="Delete selected"
-                        onClick={onDeleteSelected}
-                    />
+                    {
+                         !readonly &&
+                         <Button
+                            icon="trash"
+                            title="Delete selected"
+                            onClick={onDeleteSelected}
+                        />
+                    }
                     <Button
                         icon="duplicate"
                         title="Copy selected"

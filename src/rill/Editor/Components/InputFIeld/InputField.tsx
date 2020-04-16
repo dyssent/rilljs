@@ -121,6 +121,7 @@ export function InputField(props: InputFieldProps) {
                 className={theme.input}
                 defaultValue={defaultValue}
                 value={value}
+                disabled={disabled}
                 onChange={onChange}
                 autoFocus={autoFocus}
                 tabIndex={tabIndex}

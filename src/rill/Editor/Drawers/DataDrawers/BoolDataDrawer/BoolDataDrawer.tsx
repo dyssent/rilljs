@@ -11,9 +11,11 @@ export function BoolDataDrawer(props: BoolDataDrawerProps) {
     const {
         value,
         theme,
+        options,
         onValueChange
     } = props;
 
+    const { readonly } = options;
     const [, redraw] = useState({});
 
     function onChange(event: React.FormEvent<HTMLInputElement>) {
@@ -37,6 +39,7 @@ export function BoolDataDrawer(props: BoolDataDrawerProps) {
                 label={label}
                 checked={value.value}
                 onChange={onChange}
+                disabled={readonly}
             />
             {
                 (help || labelHelp) &&

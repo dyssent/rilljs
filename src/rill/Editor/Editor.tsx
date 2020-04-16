@@ -144,7 +144,7 @@ const RillEditorImpl: RefForwardingComponent<RillEditorRef, RillEditorProps> = (
     }
 
     function onDoubleClick(event: React.MouseEvent<HTMLElement>) {
-        if (createDialog || snippetDialogOpen) {
+        if (readonly || createDialog || snippetDialogOpen) {
             return;
         }
 
@@ -393,6 +393,7 @@ const RillEditorImpl: RefForwardingComponent<RillEditorRef, RillEditorProps> = (
                 <ControlsPanel
                     controls={prefs.controls}
                     editorElement={ref.current}
+                    readonly={readonly}
                 >
                     {prefs.controlsChildren}
                 </ControlsPanel>

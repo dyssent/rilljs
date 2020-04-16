@@ -155,6 +155,8 @@ export function Header(props: NodeHeaderProps) {
     return (
         <g
             onMouseDown={onMouseDown}
+            className={className}
+            style={style}
         >
             <rect
                 x={1}

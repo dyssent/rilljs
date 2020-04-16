@@ -10,9 +10,11 @@ export interface NumberDataDrawerProps extends DataDrawerProps<number, RNumber> 
 export function NumberDataDrawer(props: NumberDataDrawerProps) {
     const {
         value,
-        onValueChange
+        onValueChange,
+        options
     } = props;
 
+    const { readonly } = options;
     const [_, redraw] = useState({});
 
     function onChange(event: React.FormEvent<HTMLInputElement>) {
@@ -29,6 +31,7 @@ export function NumberDataDrawer(props: NumberDataDrawerProps) {
             type="text"
             value={value.value}
             onChange={onChange}
+            disabled={readonly}
         />
     );    
 }
