@@ -64,13 +64,13 @@ function ConnectionLineImpl(props: ConnectionProps) {
 
         switch (connection.type) {
             case ConnectionType.Flow:
-                fromCoords = fromMap.flowsOut[connection.source.port];
-                toCoords = toMap.flowsIn[connection.destination.port];
+                fromCoords = fromMap.flowsOut[connection.source.port].port;
+                toCoords = toMap.flowsIn[connection.destination.port].port;
                 break;
 
             case ConnectionType.Value:
-                fromCoords = fromMap.valuesOut[connection.source.port];
-                toCoords = toMap.valuesIn[connection.destination.port];
+                fromCoords = fromMap.valuesOut[connection.source.port].port;
+                toCoords = toMap.valuesIn[connection.destination.port].port;
                 break;                
         }
 

@@ -7,6 +7,7 @@ import { TextBox, TextVerticalAlignment, TextOverflow } from '../../TextBox';
 
 export interface FlowPortProps {
     pos: Coords;
+    textPos: Coords;
     width: number;
     port: Port;
     flow: IOFlow;
@@ -16,6 +17,7 @@ export interface FlowPortProps {
 export const FlowPort = React.memo((props: FlowPortProps) => {
     const {
         pos,
+        textPos,
         width,
         flow,
         port,
@@ -28,10 +30,10 @@ export const FlowPort = React.memo((props: FlowPortProps) => {
 
     const textBoxPos = useMemo(() => {
         return {
-            x: pos.x + halfWidth + 5,
-            y: pos.y
+            x: textPos.x + halfWidth + 5,
+            y: textPos.y
         };
-    }, [pos, halfWidth]);
+    }, [textPos, halfWidth]);
 
     return (
         <g

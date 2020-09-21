@@ -7,6 +7,7 @@ import { Theme, ThemeContext } from '../../theme';
 
 export interface ValuePortProps {
     pos: Coords;
+    textPos: Coords;
     width: number;
     port: Port;
     value: IOValue;
@@ -16,6 +17,7 @@ export interface ValuePortProps {
 export function ValuePort(props: ValuePortProps) {
     const {
         pos,
+        textPos,
         port,
         width,
         value,
@@ -28,10 +30,10 @@ export function ValuePort(props: ValuePortProps) {
 
     const textBoxPos = useMemo(() => {
         return {
-            x: pos.x + halfWidth + 5,
-            y: pos.y
+            x: textPos.x + halfWidth + 5,
+            y: textPos.y
         };
-    }, [pos, halfWidth]);
+    }, [textPos, halfWidth]);
 
     return (
         <g
