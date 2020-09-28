@@ -8,7 +8,7 @@ import { Divider, mergeClasses, Button } from '../Components';
 import { FullScreen } from './Fullscreen';
 import { CreateNew } from './CreateNew';
 import { InsertSnippet } from './InsertSnippet';
-import { ModelActions, ModelActionsContext, ModelConnectionState } from '../model';
+import { ModelActions, ModelActionsContext } from '../model';
 import { copyModelSelectionJSON, pasteModelJSON } from '../utils';
 import { Options, OptionsContext } from '../options';
 
@@ -116,6 +116,8 @@ export function ControlsPanel(props: React.PropsWithChildren<ControlsPanelProps>
     
         return items.filter(i => i ? true : false);
     }, [
+        readonly,
+        registry,
         actions,
         controls.fullscreen,
         controls.zoomIn,

@@ -130,7 +130,7 @@ const NodePanelImpl = (props: NodePanelProps) => {
             },
             className
         );
-    }, [theme, selected, invalid]);
+    }, [themeClasses, selected, invalid, className]);
 
     const layoutMap = useMemo(() => {
         return calcNodeAndPortsLayout(node, design, themeCanvas, false);

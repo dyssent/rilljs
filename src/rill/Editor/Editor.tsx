@@ -174,7 +174,7 @@ const RillEditorImpl: RefForwardingComponent<RillEditorRef, RillEditorProps> = (
                 }
                 break;
 
-            case ConnectionType.Flow:{
+            case ConnectionType.Flow:
                 if (editConn.targetPort) {
                     modelActions.finishConnectionEdit();
                     setCreateDialog(undefined);
@@ -212,7 +212,7 @@ const RillEditorImpl: RefForwardingComponent<RillEditorRef, RillEditorProps> = (
                         predicate
                     });
                 }
-            } break;
+            break;
         }
     }
 
@@ -257,7 +257,7 @@ const RillEditorImpl: RefForwardingComponent<RillEditorRef, RillEditorProps> = (
         }
 
         modelActions.updateConnectionEditTarget(undefined, mousePos);
-    }, [modelView.editingConnection, mousePos, modelView.pan, createDialog]);
+    }, [modelActions, modelView.editingConnection, mousePos, modelView.pan, createDialog]);
 
     useEffect(() => {
         setCreateDialog(undefined);

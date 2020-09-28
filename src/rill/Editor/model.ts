@@ -1011,7 +1011,7 @@ function buildActionsState(
 
         const existingConnections = findConnections(c =>
             (c.connection.source.node === port.node && c.connection.source.port === port.port) ||
-            c.connection.destination.node === port.node && c.connection.destination.port === port.port);
+            (c.connection.destination.node === port.node && c.connection.destination.port === port.port));
 
         const existing = existingConnections.length > 0 ? existingConnections[0] : undefined;
         if (existing) {
@@ -1423,7 +1423,7 @@ export function useModel(
         const vs = buildDefaultState(graph, design, options);
         const as = buildActionsState(vs, redraw, options, hooks, ref);
         setState([vs, as]);
-    }, [graph, design, options, hooks]);
+    }, [redraw, graph, design, options, hooks, ref]);
 
     return [
         viewState,

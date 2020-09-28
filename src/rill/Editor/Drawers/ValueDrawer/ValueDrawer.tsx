@@ -54,7 +54,7 @@ export function ValueDrawer<DT, T extends Datum<DT>>(props: ValueDrawerProps<DT,
         // onValueChange
     } = props;
 
-    const [_, redraw] = useState({});
+    const [, redraw] = useState({});
 
     const {
         label,

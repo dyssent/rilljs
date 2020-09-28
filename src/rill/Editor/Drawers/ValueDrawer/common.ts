@@ -46,5 +46,5 @@ export function useControlGroupLabels<DT = unknown, T extends Datum<DT> = Datum<
             labelHelp,
             help
         };
-    }, [value, config, val.id, value.value]);
+    }, [value, config, val.id]);
 }

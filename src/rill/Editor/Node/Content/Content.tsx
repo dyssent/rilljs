@@ -6,7 +6,7 @@ export interface NodeContentProps {
 }
 
 export function Content(props: React.PropsWithChildren<NodeContentProps>) {
-    const { width, height } = props;
+    // const { width, height } = props;
     return (
         <>
             {props.children}

@@ -1,4 +1,4 @@
-import { Datum, DatumConstructor } from '../data';
+import { Datum } from '../data';
 
 export interface IOValueConfig<DT = unknown> {
     /**

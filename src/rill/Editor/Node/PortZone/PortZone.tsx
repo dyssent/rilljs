@@ -36,7 +36,7 @@ export const PortZone = React.memo((props: PortZoneProps) => {
                 [theme.classes.target]: droppable
             }
         );
-    }, [readonly, droppable, active]);
+    }, [className, theme, droppable, active]);
 
     function onMouseEnter(event: React.MouseEvent<Element>) {
         if (readonly) {

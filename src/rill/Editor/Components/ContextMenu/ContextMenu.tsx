@@ -89,7 +89,7 @@ export function ContextMenu(props: React.PropsWithChildren<ContextMenuProps>) {
         return () => {
             target.removeEventListener('contextmenu', onContextMenu);
         };
-    }, [target, onOpen, disabled]);
+    }, [target, open, onOpen, disabled, usePortal]);
     
     function handleContentClick(e: React.MouseEvent<HTMLElement>) {
         if (!open) {

@@ -39,7 +39,7 @@ export function ControlGroup(props: React.PropsWithChildren<ControlGroupProps>) 
             },
             className
         );
-    }, [disabled, inline, className, theme]);
+    }, [disabled, fill, inline, className, theme]);
 
     return (
         <div

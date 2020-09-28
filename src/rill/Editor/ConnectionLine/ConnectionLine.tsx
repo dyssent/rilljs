@@ -49,11 +49,11 @@ function ConnectionLineImpl(props: ConnectionProps) {
             }
         );
     }, [
-        theme,
+        connectionTheme.base,
+        themeClasses,
         disabled,
         active,
-        invalid,
-        connection.type
+        invalid
     ]);
 
     const { from, to } = useMemo(() => {

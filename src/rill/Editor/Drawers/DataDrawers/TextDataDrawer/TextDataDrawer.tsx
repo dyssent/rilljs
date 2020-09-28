@@ -15,7 +15,7 @@ export function TextDataDrawer(props: TextDataDrawerProps) {
     } = props;
 
     const { readonly } = options;
-    const [_, redraw] = useState({});
+    const [, redraw] = useState({});
 
     function onChange(event: React.FormEvent<HTMLInputElement>) {
         const v = event.currentTarget.value;
