@@ -10,7 +10,7 @@ export interface MenuItemProps {
     icon?: IconName;
     text?: string;
 
-    onClick?: (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+    onClick?: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 export const MenuItem = React.memo((props: React.PropsWithChildren<MenuItemProps>) => {
@@ -27,7 +27,7 @@ export const MenuItem = React.memo((props: React.PropsWithChildren<MenuItemProps
     const classes = mergeClasses(theme.item, className);
     return (
         <li>
-            <a
+            <div
                 onClick={onClick}
                 className={classes}
                 style={style}
@@ -43,7 +43,7 @@ export const MenuItem = React.memo((props: React.PropsWithChildren<MenuItemProps
                     </span>                    
                 }
                 {children}
-            </a>
+            </div>
         </li>
     );
 });

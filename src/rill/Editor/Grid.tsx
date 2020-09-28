@@ -189,7 +189,10 @@ export const Grid = React.memo((props: React.PropsWithChildren<GridProps>) => {
         panStartOffset,
         mouseDownPos,
         actions,
-        disabled
+        disabled,
+        scale,
+        state,
+        coords
     ]);
 
     const gridDims = useMemo<Dimensions>(() => {
