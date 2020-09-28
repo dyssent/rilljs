@@ -33,7 +33,8 @@ export function calcNodeAndPortsLayout(node: Node, design: NodeDesign, theme: Ca
         flowsOut: {[key: string]: { port: Coords, text: Coords }},
         valuesIn: {[key: string]: { port: Coords, text: Coords }},
         valuesOut: {[key: string]: { port: Coords, text: Coords }},
-        height: number
+        height: number,
+        classCaption: Coords
     } = {
         flowsIn: {},
         flowsOut: {},
@@ -42,7 +43,11 @@ export function calcNodeAndPortsLayout(node: Node, design: NodeDesign, theme: Ca
         height:
             theme.node.header.height +
             flowLines * theme.node.ports.flow.height +
-            valuesLines * theme.node.ports.value.height
+            valuesLines * theme.node.ports.value.height,
+        classCaption: {
+            x: 0,
+            y: -15
+        }
     };
 
     const flowOffset = theme.node.ports.flow.width + theme.node.ports.flow.width * 2 / 3;
@@ -172,15 +177,15 @@ const NodePanelImpl = (props: NodePanelProps) => {
             className={classes}
         >
             {
-                prefs.debug &&
+                node.nodeName &&
                 <TextBox
-                    text={`id: ${node.nodeID}`}
+                    text={node.defn.class + (prefs.debug ? `id: ${node.nodeID}` : '')}
                     width={design.width}
                     height={5}
                     overflow={TextOverflow.Overflow}
                     pos={{
-                        x: 0,
-                        y: -15
+                        x: layoutMap.classCaption.x,
+                        y: layoutMap.classCaption.y
                     }}
                     className={theme.classes.textDebug}
                 />
