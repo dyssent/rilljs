@@ -36,14 +36,14 @@ export function App() {
         backgroundColor: '#2d2828'
       }}
     >
-      <div
+      {/* <div
         style={{
           backgroundColor: 'white',
           height: 200
         }}
       >
         <h1>Rill Development Editor</h1>
-      </div>
+      </div> */}
       <RillEditor graph={graph} options={{design: {snippets}} as any} />
     </div>
   );

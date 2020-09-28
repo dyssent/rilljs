@@ -1,14 +1,14 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 
 import { Theme, ThemeContext } from '../../theme';
-import { IOFlow, Coords, Port } from '../../../model';
+import { IOFlow, Rect, Coords, Port } from '../../../model';
 import { PortZone } from '../PortZone';
-import { TextBox, TextVerticalAlignment, TextOverflow } from '../../TextBox';
+import { TextBox, TextAlignment, TextVerticalAlignment, TextOverflow } from '../../TextBox';
 
 export interface FlowPortProps {
     pos: Coords;
-    textPos: Coords;
-    width: number;
+    textRect: Rect;
+    textAlignment: TextAlignment;
     port: Port;
     flow: IOFlow;
     readonly?: boolean;
@@ -17,23 +17,15 @@ export interface FlowPortProps {
 export const FlowPort = React.memo((props: FlowPortProps) => {
     const {
         pos,
-        textPos,
-        width,
+        textRect,
+        textAlignment,
         flow,
         port,
         readonly
     } = props;
 
     const theme = useContext<Theme>(ThemeContext).canvas.node.ports;
-    const halfHeight = theme.flow.height / 2;
-    const halfWidth = theme.flow.width / 2;
-
-    const textBoxPos = useMemo(() => {
-        return {
-            x: textPos.x + halfWidth + 5,
-            y: textPos.y
-        };
-    }, [textPos, halfWidth]);
+    const halfHeight = textRect.height / 2;
 
     return (
         <g
@@ -49,11 +41,12 @@ export const FlowPort = React.memo((props: FlowPortProps) => {
             {
                 flow.name &&
                 <TextBox
-                    pos={textBoxPos}
+                    pos={textRect}
                     text={flow.name}
-                    width={width - halfWidth}
-                    height={theme.flow.height}
+                    width={textRect.width}
+                    height={textRect.height}
                     verticalAlignment={TextVerticalAlignment.Middle}
+                    alignment={textAlignment}
                     overflow={TextOverflow.Ellipsis}
                     className={theme.text}
                 />

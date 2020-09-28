@@ -1,14 +1,14 @@
 import React, { useContext, useMemo } from 'react';
 
-import { IOValue, Coords, Port } from '../../../model';
+import { IOValue, Coords, Rect, Port } from '../../../model';
 import { PortZone } from '../PortZone';
-import { TextBox, TextVerticalAlignment, TextOverflow } from '../../TextBox';
+import { TextBox, TextAlignment, TextVerticalAlignment, TextOverflow } from '../../TextBox';
 import { Theme, ThemeContext } from '../../theme';
 
 export interface ValuePortProps {
     pos: Coords;
-    textPos: Coords;
-    width: number;
+    textRect: Rect;
+    textAlignment: TextAlignment;
     port: Port;
     value: IOValue;
     readonly?: boolean;
@@ -17,23 +17,15 @@ export interface ValuePortProps {
 export function ValuePort(props: ValuePortProps) {
     const {
         pos,
-        textPos,
+        textRect,
+        textAlignment,
         port,
-        width,
         value,
         readonly
     } = props;
 
     const theme = useContext<Theme>(ThemeContext).canvas.node.ports;
-    const halfHeight = theme.value.height / 2;
-    const halfWidth = theme.value.width / 2;
-
-    const textBoxPos = useMemo(() => {
-        return {
-            x: textPos.x + halfWidth + 5,
-            y: textPos.y
-        };
-    }, [textPos, halfWidth]);
+    const halfHeight = textRect.height / 2;
 
     return (
         <g
@@ -47,11 +39,12 @@ export function ValuePort(props: ValuePortProps) {
                 readonly={readonly}
             />
             <TextBox
-                pos={textBoxPos}
+                pos={textRect}
                 text={value.config.name || value.id}
-                width={width - halfWidth}
-                height={theme.value.height}
+                width={textRect.width}
+                height={textRect.height}
                 verticalAlignment={TextVerticalAlignment.Middle}
+                alignment={textAlignment}
                 overflow={TextOverflow.Ellipsis}
                 className={theme.text}
             />

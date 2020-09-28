@@ -4,11 +4,11 @@ import { Header } from './Header';
 import { Backdrop } from './Backdrop';
 import { Content } from './Content';
 import { FlowPort } from './FlowPort';
-import { Node, NodeDesign, Coords, DesignViewMode } from '../../model';
+import { Node, NodeDesign, Coords, Rect, DesignViewMode } from '../../model';
 import { Theme, ThemeContext, CanvasTheme } from '../theme';
 import { ValuePort } from './ValuePort';
 import { ModelActions, ModelActionsContext } from '../model';
-import { TextBox, TextOverflow } from '../TextBox';
+import { TextBox, TextAlignment, TextOverflow } from '../TextBox';
 import { ViewPrefsContext, ViewPrefs } from '../prefs';
 import { mergeClasses, BaseProps, Icons } from '../Components';
 
@@ -20,7 +20,22 @@ export interface NodePanelProps extends BaseProps {
     readonly?: boolean;
 }
 
-export function calcNodeAndPortsLayout(node: Node, design: NodeDesign, theme: CanvasTheme, portsCentered: boolean) {
+export interface NodeLayoutPort {
+    port: Coords;
+    icon?: Rect;
+    text: Rect;
+}
+
+export interface NodeLayout {
+    flowsIn: {[key: string]: NodeLayoutPort};
+    flowsOut: {[key: string]: NodeLayoutPort};
+    valuesIn: {[key: string]: NodeLayoutPort};
+    valuesOut: {[key: string]: NodeLayoutPort};
+    height: number;
+    classCaption: Coords;
+}
+
+export function calcNodeAndPortsLayout(node: Node, design: NodeDesign, theme: CanvasTheme, portsCentered: boolean): NodeLayout {
     const flowsIn = node.getFlowInputs();
     const flowsOut = node.getFlowOutputs();
     const flowLines = Math.max(flowsIn.length, flowsOut.length);
@@ -28,14 +43,7 @@ export function calcNodeAndPortsLayout(node: Node, design: NodeDesign, theme: Ca
     const valuesOut = node.getValueOutputs();
     const valuesLines = Math.max(valuesIn.length, valuesOut.length);
 
-    const res: {
-        flowsIn: {[key: string]: { port: Coords, text: Coords }},
-        flowsOut: {[key: string]: { port: Coords, text: Coords }},
-        valuesIn: {[key: string]: { port: Coords, text: Coords }},
-        valuesOut: {[key: string]: { port: Coords, text: Coords }},
-        height: number,
-        classCaption: Coords
-    } = {
+    const res: NodeLayout = {
         flowsIn: {},
         flowsOut: {},
         valuesIn: {},
@@ -60,11 +68,13 @@ export function calcNodeAndPortsLayout(node: Node, design: NodeDesign, theme: Ca
         res.flowsIn[f.id] = {
             port: {
                 x: -portOffset,
-                y: theme.node.header.height + fi * theme.node.ports.flow.height + flowCentered    
+                y: theme.node.header.height + fi * theme.node.ports.flow.height + flowCentered
             },
             text: {
-                x: 0,
-                y: theme.node.header.height + fi * theme.node.ports.flow.height + flowCentered    
+                x: 7,
+                y: theme.node.header.height + fi * theme.node.ports.flow.height + flowCentered,
+                width: design.width / 2 - 7,
+                height: theme.node.ports.flow.height
             }
         };
     });
@@ -73,11 +83,13 @@ export function calcNodeAndPortsLayout(node: Node, design: NodeDesign, theme: Ca
         res.flowsOut[f.id] = {
             port: {
                 x: design.width + portOffset,
-                y: theme.node.header.height + fi * theme.node.ports.flow.height + flowCentered    
+                y: theme.node.header.height + fi * theme.node.ports.flow.height + flowCentered
             },
             text: {
-                x: design.width + portOffset,
-                y: theme.node.header.height + fi * theme.node.ports.flow.height + flowCentered    
+                x: design.width / 2,
+                y: theme.node.header.height + fi * theme.node.ports.flow.height + flowCentered,
+                width: design.width / 2 - 7,
+                height: theme.node.ports.flow.height
             }
         };
     });
@@ -86,11 +98,13 @@ export function calcNodeAndPortsLayout(node: Node, design: NodeDesign, theme: Ca
         res.valuesIn[v.id] = {
             port: {
                 x: -portOffset,
-                y: theme.node.header.height + vi * theme.node.ports.value.height + flowLines * theme.node.ports.flow.height + valueCentered    
+                y: theme.node.header.height + vi * theme.node.ports.value.height + flowLines * theme.node.ports.flow.height + valueCentered
             },
             text: {
-                x: 0,
-                y: theme.node.header.height + vi * theme.node.ports.value.height + flowLines * theme.node.ports.flow.height + valueCentered
+                x: 7,
+                y: theme.node.header.height + vi * theme.node.ports.value.height + flowLines * theme.node.ports.flow.height + valueCentered,
+                width: design.width / 2 - 7,
+                height: theme.node.ports.value.height
             }
         };
     });
@@ -99,11 +113,13 @@ export function calcNodeAndPortsLayout(node: Node, design: NodeDesign, theme: Ca
         res.valuesOut[v.id] = {
             port: {
                 x: design.width + portOffset,
-                y: theme.node.header.height + vi * theme.node.ports.value.height + flowLines * theme.node.ports.flow.height + valueCentered    
+                y: theme.node.header.height + vi * theme.node.ports.value.height + flowLines * theme.node.ports.flow.height + valueCentered
             },
             text: {
-                x: design.width + portOffset,
-                y: theme.node.header.height + vi * theme.node.ports.value.height + flowLines * theme.node.ports.flow.height + valueCentered    
+                x: design.width / 2,
+                y: theme.node.header.height + vi * theme.node.ports.value.height + flowLines * theme.node.ports.flow.height + valueCentered,
+                width: design.width / 2 - 7,
+                height: theme.node.ports.value.height
             }
         };
     });
@@ -214,13 +230,13 @@ const NodePanelImpl = (props: NodePanelProps) => {
                                     key={f.id}
                                     flow={f}
                                     pos={layoutMap.flowsIn[f.id].port}
-                                    textPos={layoutMap.flowsIn[f.id].text}
+                                    textRect={layoutMap.flowsIn[f.id].text}
+                                    textAlignment={TextAlignment.Left}
                                     port={{
                                         node: node.nodeID,
                                         port: f.id
                                     }}                  
                                     readonly={readonly}
-                                    width={design.width}
                                     // onMouseDown={onPortMouseDown}
                                 />
                             )
@@ -231,13 +247,13 @@ const NodePanelImpl = (props: NodePanelProps) => {
                                     key={f.id}
                                     flow={f}
                                     pos={layoutMap.flowsOut[f.id].port}
-                                    textPos={layoutMap.flowsOut[f.id].text}
+                                    textRect={layoutMap.flowsOut[f.id].text}
+                                    textAlignment={TextAlignment.Right}
                                     port={{
                                         node: node.nodeID,
                                         port: f.id
                                     }} 
                                     readonly={readonly}
-                                    width={design.width}
                                     // onMouseDown={onPortMouseDown}
                                 />
                             )
@@ -257,8 +273,8 @@ const NodePanelImpl = (props: NodePanelProps) => {
                                         port: v.id
                                     }}
                                     pos={layoutMap.valuesIn[v.id].port}
-                                    textPos={layoutMap.valuesIn[v.id].text}
-                                    width={design.width}
+                                    textRect={layoutMap.valuesIn[v.id].text}
+                                    textAlignment={TextAlignment.Left}
                                     // onMouseDown={onPortMouseDown}
                                 />
                             )
@@ -273,8 +289,8 @@ const NodePanelImpl = (props: NodePanelProps) => {
                                         port: v.id
                                     }}                                    
                                     pos={layoutMap.valuesOut[v.id].port}
-                                    textPos={layoutMap.valuesOut[v.id].text}
-                                    width={design.width}
+                                    textRect={layoutMap.valuesOut[v.id].text}
+                                    textAlignment={TextAlignment.Right}
                                     // onMouseDown={onPortMouseDown}
                                 />
                             )
