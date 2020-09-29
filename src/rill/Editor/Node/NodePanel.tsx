@@ -64,61 +64,67 @@ export function calcNodeAndPortsLayout(node: Node, design: NodeDesign, theme: Ca
     const valueCentered = portsCentered ? theme.node.ports.value.height / 2 : 0;
     const portOffset = Math.max(flowOffset, valueOffset);
 
+    const padding = 7;
+
     flowsIn.forEach((f, fi) => {
+        const fullWidth = fi >= flowsOut.length;
         res.flowsIn[f.id] = {
             port: {
                 x: -portOffset,
                 y: theme.node.header.height + fi * theme.node.ports.flow.height + flowCentered
             },
             text: {
-                x: 7,
+                x: padding,
                 y: theme.node.header.height + fi * theme.node.ports.flow.height + flowCentered,
-                width: design.width / 2 - 7,
+                width: fullWidth ? design.width - padding * 2 : design.width / 2 - padding,
                 height: theme.node.ports.flow.height
             }
         };
     });
 
     flowsOut.forEach((f, fi) => {
+        const fullWidth = fi >= flowsIn.length;
         res.flowsOut[f.id] = {
             port: {
                 x: design.width + portOffset,
                 y: theme.node.header.height + fi * theme.node.ports.flow.height + flowCentered
             },
             text: {
-                x: design.width / 2,
+                x: fullWidth ? padding : design.width / 2,
                 y: theme.node.header.height + fi * theme.node.ports.flow.height + flowCentered,
-                width: design.width / 2 - 7,
+                width: fullWidth ? design.width - padding * 2 : design.width / 2 - padding,
                 height: theme.node.ports.flow.height
             }
         };
     });
 
     valuesIn.forEach((v, vi) => {
+        const fullWidth = vi >= valuesOut.length;
         res.valuesIn[v.id] = {
             port: {
                 x: -portOffset,
                 y: theme.node.header.height + vi * theme.node.ports.value.height + flowLines * theme.node.ports.flow.height + valueCentered
             },
             text: {
-                x: 7,
+                x: padding,
                 y: theme.node.header.height + vi * theme.node.ports.value.height + flowLines * theme.node.ports.flow.height + valueCentered,
-                width: design.width / 2 - 7,
+                width: fullWidth ? design.width - padding * 2 : design.width / 2 - padding,
                 height: theme.node.ports.value.height
             }
         };
     });
 
     valuesOut.forEach((v, vi) => {
+        const fullWidth = vi >= valuesIn.length;
         res.valuesOut[v.id] = {
             port: {
                 x: design.width + portOffset,
                 y: theme.node.header.height + vi * theme.node.ports.value.height + flowLines * theme.node.ports.flow.height + valueCentered
             },
             text: {
-                x: design.width / 2,
+                x: fullWidth ? padding : design.width / 2,
                 y: theme.node.header.height + vi * theme.node.ports.value.height + flowLines * theme.node.ports.flow.height + valueCentered,
-                width: design.width / 2 - 7,
+                width: fullWidth ? design.width - padding * 2 : design.width / 2 - padding,
                 height: theme.node.ports.value.height
             }
         };

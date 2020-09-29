@@ -10,6 +10,7 @@ import React, {
 
 import { NodePanel } from './Node';
 import { Styles } from './Styles';
+import { Icons } from './Icons';
 import {
     Graph,
     Design,
@@ -403,6 +404,7 @@ const RillEditorImpl: RefForwardingComponent<RillEditorRef, RillEditorProps> = (
                 >
                     <defs>
                         <Styles />
+                        <Icons />
                     </defs>
                     <Grid
                         scale={modelView.scale}

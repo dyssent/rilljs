@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo } from 'react';
+import React, { useContext, useState, useMemo, useCallback } from 'react';
 
 import { Port } from '../../../model';
 import { ModelActions, ModelActionsContext } from '../../model';
@@ -38,7 +38,7 @@ export const PortZone = React.memo((props: PortZoneProps) => {
         );
     }, [className, theme, droppable, active]);
 
-    function onMouseEnter(event: React.MouseEvent<Element>) {
+    const onMouseEnter = useCallback((event: React.MouseEvent<Element>) => {
         if (readonly) {
             return;
         }
@@ -57,9 +57,9 @@ export const PortZone = React.memo((props: PortZoneProps) => {
         } else {
             setActive(true);
         }
-    }
+    }, [readonly, actions, port]);
 
-    function onMouseLeave(event: React.MouseEvent<Element>) {
+    const onMouseLeave = useCallback((event: React.MouseEvent<Element>) => {
         if (readonly) {
             return;
         }
@@ -73,9 +73,9 @@ export const PortZone = React.memo((props: PortZoneProps) => {
             actions.updateConnectionEditTarget(undefined, mousePos);
         }
         setDroppable(false);
-    }
+    }, [readonly, actions, droppable]);
 
-    function onMouseDown(event: React.MouseEvent<Element>) {
+    const onMouseDown = useCallback((event: React.MouseEvent<Element>) => {
         if (readonly) {
             return;
         }
@@ -85,13 +85,13 @@ export const PortZone = React.memo((props: PortZoneProps) => {
             y: event.clientY
         });
         actions.beginConnectionEdit(port, mousePos);
-    }
+    }, [readonly, actions, port]);
 
-    function onMouseUp(event: React.MouseEvent<Element>) {
+    const onMouseUp = useCallback((event: React.MouseEvent<Element>) => {
         if (readonly) {
             return;
         }
-    }
+    }, [readonly]);
 
     return (
         <circle
@@ -112,3 +112,5 @@ export const PortZone = React.memo((props: PortZoneProps) => {
     prev.port.port === next.port.port &&
     prev.readonly === next.readonly
 );
+
+// <polygon points="205,31 218,38 205,45" class="rill-canvas-node-port-flow"></polygon>
