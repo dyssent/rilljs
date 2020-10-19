@@ -691,8 +691,15 @@ label.rill-label {
 
 .rill-control-group .rill-help-text {
     margin-top: 5px;
-    color: #4f5152;
     font-size: 12px;
+}
+
+.rill-light .rill-control-group .rill-help-text {
+    color: #4f5152;
+}
+
+.rill-dark .rill-control-group .rill-help-text {
+    color: #999d9e;
 }
 
 .rill-control-group.rill-fill {
@@ -730,7 +737,7 @@ label.rill-label {
 }
 
 .rill-dark .rill-node-edit {
-    background-color: rgb(148,148,148);
+    background-color: #303030;
     border-color: rgb(101,101,101);
     color: white;
 }
@@ -742,7 +749,7 @@ label.rill-label {
 }
 
 .rill-light .rill-node-edit {
-    background-color: rgb(221,221,221);
+    background-color: #fff;
     border-color: rgb(175,175,175);
     color: black;
 }
